@@ -1,0 +1,68 @@
+# Builds the site and deploys it to the VPS. The server side (the `deploy` user, the
+# `petrovic-foo` service and the nginx proxy) lives in nixos-config at
+# system/vps/www/petrovic.foo/default.nix.
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Let a deploy finish before the next one starts, rather than cancelling it halfway.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+env:
+  HOST: deploy@143.47.230.107
+  PROFILE: /nix/var/nix/profiles/per-user/deploy/petrovic-foo
+
+jobs:
+  deploy:
+    # The VPS is aarch64, so build natively instead of cross-compiling.
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: cachix/install-nix-action@v31
+
+      - name: Build
+        run: nix build .#default --print-build-logs
+
+      # The deploy user isn't trusted by the VPS's Nix store, so it only accepts paths signed
+      # with a key it trusts.
+      - name: Sign
+        env:
+          NIX_SIGNING_KEY: ${{ secrets.NIX_SIGNING_KEY }}
+        run: |
+          key="$RUNNER_TEMP/nix-signing-key"
+          printf '%s' "$NIX_SIGNING_KEY" > "$key"
+          nix store sign --recursive --key-file "$key" ./result
+          rm "$key"
+
+      - name: Set up SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      # --substitute-on-destination lets the VPS fetch whatever cache.nixos.org has (TeX Live,
+      # mostly) itself, so only the site's own paths are uploaded.
+      - name: Deploy
+        run: |
+          out=$(readlink -f result)
+          nix copy --substitute-on-destination --to "ssh-ng://$HOST" "$out"
+          ssh "$HOST" "nix-env --profile $PROFILE --set $out && sudo systemctl restart petrovic-foo.service"
+
+      - name: Check the site is up
+        run: |
+          for _ in $(seq 10); do
+            ssh "$HOST" 'curl -fsS -o /dev/null http://127.0.0.1:3000/' && exit 0
+            sleep 2
+          done
+          echo "petrovic-foo didn't come up after the restart" >&2
+          exit 1
