@@ -1,0 +1,231 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Stefan Petrovic -- Resume}, pdfauthor={Stefan Petrovic}}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{5pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that the generated PDF is machine-readable/ATS-parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1\vspace{-2pt}}%
+  }%
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeSubItemListStart}{\begin{itemize}[label=$\circ$, topsep=0pt, itemsep=0pt, parsep=0pt]}
+\newcommand{\resumeSubItemListEnd}{\end{itemize}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Stefan Petrovic} \\ \vspace{1pt}
+    \small he/him $|$
+    \href{mailto:stefan@petrovic.foo}{\underline{stefan@petrovic.foo}} $|$
+    \href{https://linkedin.com/in/stefan-foo}{\underline{linkedin.com/in/stefan-foo}} $|$
+    \href{https://github.com/Stefanuk12}{\underline{github.com/stefanuk12}}
+\end{center}
+
+
+%-----------ABOUT ME-----------
+\section{About Me}
+{\small
+Computer Science student focused on backend development in Rust. My reverse-engineering resources have earned over 1,000 stars on GitHub, which led to freelance work building automation scripts and other bespoke tools that generated tens of thousands of dollars for clients. I now build developer tooling and contribute to open-source projects, and I am looking to apply these skills in a professional engineering team.\par
+}
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Northumbria University}{Sep. 2024 -- Jun. 2027}
+      {BSc (Hons) Computer Science, on track for First-Class Honours (78\% average)}{Newcastle upon Tyne, U.K.}
+    \resumeSubheading
+      {Jesmond Park Academy}{Sep. 2022 -- Jun. 2024}
+      {A Levels: Physics (A), Computing (B), Maths (B)}{Heaton, Newcastle upon Tyne, U.K.}
+  \resumeSubHeadingListEnd
+
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Skills}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Programming Languages}{: Luau, Rust, TypeScript, JavaScript, Python, C++} \\
+     \textbf{Frameworks}{: React, React Native, Leptos, Axum, Actix Web, Tailwind CSS} \\
+     \textbf{Technologies}{: Git, Docker, Nix, GitHub Actions (CI/CD), Nginx, Bash, SQL, SurrealDB, HTML, CSS, LaTeX} \\
+     \textbf{Spoken Languages}{: English (native); Croatian, Serbian, Romanian (conversational)}
+    }}
+ \end{itemize}
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Luau Developer}{Jan. 2026 -- Present}
+      {Kiciahook}{Remote}
+      \resumeItemListStart
+        \resumeItem{Top contributor (220+ commits) to a paid Roblox mod earning tens of thousands of dollars a month}
+        \resumeItem{Reworked the UI around its config, so settings and UI stay in sync automatically}
+        \resumeItem{Maintain the project template used across the team's products}
+        \resumeItem{Manage the backend server declaratively with Nix and maintain the AI customer-support bot I wrote in Rust}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Data Analyst, Work Experience}{Jul. 2024}
+      {Oliver Wyman}{Newcastle upon Tyne, U.K.}
+      \resumeItemListStart
+        \resumeItem{Led a team of 3 analysing Newcastle employment data in Excel and Python, splitting work by strengths}
+        \resumeItem{Earned a mentor and a fast-tracked hiring process by impressing the analysts}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------OPEN SOURCE-----------
+\section{Open-Source Contributions}
+  \resumeSubHeadingListStart
+    \resumeProjectHeading
+      {\textbf{\href{https://github.com/luau-lang/luau/issues?q=author:Stefanuk12}{\underline{Luau}}} $|$ \emph{C++} -- Roblox's programming language and type checker, 6k+ stars, 11 PRs in preparation}{2026}
+      \resumeItemListStart
+        \resumeItem{Fixing 16 type-checker bugs in refinements, generics and type functions}
+      \resumeItemListEnd
+    \resumeProjectHeading
+      {\textbf{\href{https://github.com/seaofvoices/darklua/issues?q=author:Stefanuk12}{\underline{darklua}}} $|$ \emph{Rust} -- Luau code transformer, 240+ stars, 3 merged PRs}{2023 -- 2026}
+      \resumeItemListStart
+        \resumeItem{Added a watch mode (\texttt{process -{}-watch}) that re-runs processing on file changes}
+        \resumeItem{Added path aliases from \texttt{.luaurc} files, later extended to use the nearest \texttt{.luaurc} to each file}
+      \resumeItemListEnd
+    \resumeProjectHeading
+      {\textbf{\href{https://github.com/JohnnyMorganz/luau-lsp/issues?q=author:Stefanuk12}{\underline{luau-lsp}}} $|$ \emph{C++} -- Luau language server, 550+ stars, 1 merged PR, 3 in review}{2025 -- 2026}
+      \resumeItemListStart
+        \resumeItem{Made the \texttt{analyze} CLI apply ignore globs and definition files from the settings file}
+        \resumeItem{Opened PRs for call-site hover signatures, precise \texttt{EnumItem.EnumType} types and an \texttt{analyze} crash fix}
+      \resumeItemListEnd
+    \resumeProjectHeading
+      {\textbf{\href{https://github.com/pesde-pkg/pesde/issues?q=author:Stefanuk12}{\underline{pesde}}} $|$ \emph{Rust} -- package manager for Luau, 130 stars, 3 merged PRs}{2025}
+      \resumeItemListStart
+        \resumeItem{Added a Docker image build to the release workflow}
+        \resumeItem{Added a \texttt{-{}-dev} flag that installs only dev dependencies, for smaller CI installs}
+      \resumeItemListEnd
+    \resumeProjectHeading
+      {\textbf{\href{https://github.com/Dvitash/Verde/issues?q=author:Stefanuk12}{\underline{Verde}}} $|$ \emph{TypeScript, Luau} -- Roblox Studio explorer in VS Code, 2 merged PRs}{2026}
+      \resumeItemListStart
+        \resumeItem{Added lazy loading of visible instances and an API for extensions to add context-menu actions}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{\href{https://github.com/Stefanuk12/roprobe}{\underline{roprobe}}} $|$ \emph{Rust, TypeScript, Luau}}{Feb. 2026 -- Present}
+          \resumeItemListStart
+            \resumeItem{Built a Rust and Tokio WebSocket broker for inspecting running Roblox games from VS Code}
+            \resumeItem{Kept a live copy of the game's instance tree in sync with small patches, encoded with my \href{https://github.com/Stefanuk12/squash-rs}{\underline{squash-rs}} library}
+            \resumeItem{Added script execution across game sessions, with output shown in VS Code and luau-lsp integration}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{\href{https://github.com/Stefanuk12/A-NEA}{\underline{Full-Stack Flashcard Web App}}} $|$ \emph{Rust, SurrealQL}}{Sep. 2023 -- Mar. 2024}
+          \resumeItemListStart
+            \resumeItem{Built a Leptos and Tailwind frontend with an integrated Markdown editor}
+            \resumeItem{Wrote an Actix Web API backed by SurrealDB, with magic-link login and TOTP two-factor auth}
+            \resumeItem{Implemented flashcard review scheduling with the SM-2 spaced-repetition algorithm}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}

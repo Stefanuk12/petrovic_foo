@@ -1,0 +1,27 @@
+{
+  "latex-workshop.latex.outDir": "%WORKSPACE_FOLDER%/build",
+
+  // Analyse the server build; #[cfg(feature = "hydrate")] code shows as inactive instead.
+  "rust-analyzer.cargo.features": ["ssr"],
+  // Separate target dir so rust-analyzer doesn't fight `cargo leptos watch` for the build lock.
+  "rust-analyzer.cargo.targetDir": true,
+  // Use the dev shell's rust-analyzer (via direnv) so it matches rust-toolchain.toml.
+  "rust-analyzer.server.path": "rust-analyzer",
+  // Formats view! macros too; leptosfmt runs rustfmt for the rest.
+  "rust-analyzer.rustfmt.overrideCommand": ["leptosfmt", "--stdin", "--rustfmt"],
+  "[rust]": {
+    "editor.formatOnSave": true
+  },
+
+  // Tailwind class completion inside view! macros.
+  "tailwindCSS.includeLanguages": { "rust": "html" },
+  "tailwindCSS.experimental.configFile": "style/tailwind.css",
+
+  // Enable text wrapping
+  "[markdown]": {
+    "editor.wordWrap": "on"
+  },
+  "[latex]": {
+    "editor.wordWrap": "on"
+  }
+}
